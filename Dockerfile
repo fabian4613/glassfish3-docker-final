@@ -62,4 +62,4 @@ WORKDIR $GLASSFISH_HOME
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
 
 # Start the GlassFish domain and OpenSSH
-CMD ["/startup_script.sh", "/bin/bash" ]
+CMD ["/startup_script.sh", "bash"]
