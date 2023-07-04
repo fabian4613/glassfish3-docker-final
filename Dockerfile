@@ -20,7 +20,7 @@ RUN apt-get install -y openjdk-8-jdk
 RUN apt-get install -y openssh-server sudo vim nano
 
 # Create new sudo user
-RUN useradd -rm -d /home/glassfish -s /bin/bash -g root -G sudo -u 1000 glassfish
+RUN useradd -rm -d /home/glassfish -s /bin/bash -g root -G sudo -u 04613 glassfish
 
 # Update user password
 RUN echo 'glassfish:admin' | chpasswd
