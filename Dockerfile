@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:mantic-20230624
 
 # Install base packages
 RUN yes | unminimize
