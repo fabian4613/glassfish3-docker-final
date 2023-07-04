@@ -8,7 +8,11 @@ Este documento te guía en la configuración para habilitar el acceso al panel d
 1. Ejecuta el siguiente comando en tu terminal para iniciar el contenedor Docker:
 
 ```bash
-docker run -dit --name glassfish3container -p 25:22  glassfish3
+docker build -t glassfish3 .
+```
+
+```bash
+docker run -dit --name glassfish3container -p 25:22 glassfish3
 ```
 
 Este comando inicia un nuevo contenedor Docker llamado glassfish3container con OpenSSH-Server instalado y activado.
