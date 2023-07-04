@@ -9,6 +9,9 @@ ENV GLASSFISH_PKG=/tmp/glassfish-3.1.2.2.zip \
     GLASSFISH_HOME=/usr/local/glassfish3 \
     MD5=ae8e17e9dcc80117cb4b39284302763f \
     PATH=$PATH:/usr/local/glassfish3/bin
+    
+# SPEC para automatizar: change-admin-password
+RUN apt-get install -y expect
 
 # Update packages and install necessary dependencies
 RUN apt-get update && apt-get install -y wget unzip expect
