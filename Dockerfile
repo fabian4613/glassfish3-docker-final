@@ -29,7 +29,7 @@ RUN echo 'glassfish:admin' | chpasswd
 RUN echo 'glassfish ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Create the GlassFish directory and set permissions
-RUN mkdir -p $GLASSFISH_HOME && chown -R glassfish:root $GLASSFISH_HOME/*
+RUN mkdir -p $GLASSFISH_HOME && chown -R glassfish:root $GLASSFISH_HOME
 
 # Modificar el perfil del usuario para incluir las variables de entorno
 RUN echo 'export GLASSFISH_PKG=/tmp/glassfish-3.1.2.2.zip' >> /home/glassfish/.bashrc && \
