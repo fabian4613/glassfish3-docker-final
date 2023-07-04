@@ -65,4 +65,4 @@ WORKDIR $GLASSFISH_HOME
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
 
 # Mantener el contenedor activo con /bin/sh
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
