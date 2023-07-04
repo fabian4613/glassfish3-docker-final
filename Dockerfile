@@ -53,7 +53,7 @@ RUN wget -q -O $GLASSFISH_PKG $GLASSFISH_URL && \
 RUN echo "AS_JAVA=/usr/lib/jvm/java-8-openjdk-amd64" >> $GLASSFISH_HOME/glassfish/config/asenv.conf && \
     echo "OTRA_VARIABLE=valor" >> $GLASSFISH_HOME/glassfish/config/asenv.conf
 
-# Agregar jre-1.8=${jre-1.7} a asenv.conf
+# Agregar jre-1.8=${jre-1.7} a osgi.properties
 RUN echo "jre-1.8=${jre-1.7}" >> $GLASSFISH_HOME/glassfish/config/osgi.properties
 
 # Ports being exposed
