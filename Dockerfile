@@ -35,6 +35,9 @@ RUN mkdir -p $GLASSFISH_HOME && chown -R glassfish:root $GLASSFISH_HOME
 COPY startup_script.sh /startup_script.sh
 RUN chmod +x /startup_script.sh
 
+# Ejecutar script
+RUN /startup_script.sh
+
 # Download and install GlassFish
 RUN wget -q -O $GLASSFISH_PKG $GLASSFISH_URL && \
     echo "$MD5 *$GLASSFISH_PKG" | md5sum -c - && \
@@ -61,5 +64,5 @@ WORKDIR $GLASSFISH_HOME
 # Copia los archivos WAR locales al directorio autodeploy de GlassFish
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
 
-# Start the GlassFish domain and OpenSSH
-CMD ["/startup_script.sh", "bash"]
+# Mantener el contenedor activo con /bin/sh
+CMD ["/bin/sh"]
