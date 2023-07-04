@@ -1,6 +1,6 @@
 #!/usr/bin/expect
 
-set timeout 20
+set timeout 5
 set username "admin"
 set password "admin"
 
