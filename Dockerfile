@@ -35,9 +35,6 @@ RUN mkdir -p $GLASSFISH_HOME && chown -R glassfish:root $GLASSFISH_HOME
 COPY startup_script.sh /startup_script.sh
 RUN chmod +x /startup_script.sh
 
-# Change to the glassfish user
-USER glassfish
-
 # Download and install GlassFish
 RUN wget -q -O $GLASSFISH_PKG $GLASSFISH_URL && \
     echo "$MD5 *$GLASSFISH_PKG" | md5sum -c - && \
