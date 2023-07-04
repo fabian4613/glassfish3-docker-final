@@ -60,5 +60,9 @@ WORKDIR $GLASSFISH_HOME
 # Copia los archivos WAR locales al directorio autodeploy de GlassFish
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
 
-# Inicia el dominio de GlassFish y genera SSL
-CMD ["/bin/bash"]
+# Copy the startup script into the container
+COPY startup_script.sh /startup_script.sh
+RUN chmod +x /startup_script.sh
+
+# Start the GlassFish domain and OpenSSH
+CMD ["/bin/bash", "/startup_script.sh"]
