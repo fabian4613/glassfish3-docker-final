@@ -13,7 +13,7 @@ ENV GLASSFISH_PKG=/tmp/glassfish-3.1.2.2.zip \
 # Update packages and install necessary dependencies
 RUN apt-get update && apt-get install -y wget unzip expect
 
-# Download and install OpenJDK 7
+# Download and install OpenJDK 8
 RUN apt-get install -y openjdk-8-jdk
 
 # Install sudo, OpenSSH, vim and nano
@@ -54,7 +54,7 @@ RUN echo "AS_JAVA=/usr/lib/jvm/java-8-openjdk-amd64" >> $GLASSFISH_HOME/glassfis
     echo "OTRA_VARIABLE=valor" >> $GLASSFISH_HOME/glassfish/config/asenv.conf
 
 # Agregar jre-1.8=${jre-1.7} a asenv.conf
-RUN echo "jre-1.8=${jre-1.7}" >> $GLASSFISH_HOME/glassfish/config/asenv.conf
+RUN echo "jre-1.8=${jre-1.7}" >> $GLASSFISH_HOME/glassfish/config/osgi.properties
 
 # Ports being exposed
 EXPOSE 4848 8080 22
