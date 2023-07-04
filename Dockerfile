@@ -42,9 +42,6 @@ RUN echo 'export GLASSFISH_PKG=/tmp/glassfish-3.1.2.2.zip' | tee -a /home/glassf
 COPY startup_script.sh /startup_script.sh
 RUN chmod +x /startup_script.sh
 
-# Ejecutar script
-RUN /startup_script.sh
-
 # Download and install GlassFish
 RUN wget -q -O $GLASSFISH_PKG $GLASSFISH_URL && \
     echo "$MD5 *$GLASSFISH_PKG" | md5sum -c - && \
@@ -72,4 +69,4 @@ WORKDIR $GLASSFISH_HOME
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
 
 # Mantener el contenedor activo con /bin/sh
-CMD ["/bin/bash"]
+CMD service ssh start && /bin/bash
