@@ -57,9 +57,6 @@ EXPOSE 4848 8080 8181 22
 
 WORKDIR $GLASSFISH_HOME
 
-# Copy the entrypoint script
-COPY docker-entrypoint.sh $GLASSFISH_HOME/
-
 # Copia los archivos WAR locales al directorio autodeploy de GlassFish
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
 
