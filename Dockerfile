@@ -31,6 +31,9 @@ RUN echo 'glassfish ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # Create the GlassFish directory and set permissions
 RUN mkdir -p $GLASSFISH_HOME && chown -R glassfish:root $GLASSFISH_HOME
 
+# Modificar el perfil del usuario para incluir la variable PATH
+RUN echo 'export PATH=$PATH:/usr/local/glassfish3/bin' >> /home/glassfish/.bashrc
+
 # Copy the startup script into the container
 COPY startup_script.sh /startup_script.sh
 RUN chmod +x /startup_script.sh
