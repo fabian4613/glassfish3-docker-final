@@ -29,3 +29,11 @@ Si deseas ingresar al contenedor creado, puedes hacer lo siguiente:
 ```bash
 docker exec -u glassfish -it glassfish3container /bin/bash
 ```
+### asadmin-change-password
+
+El script change_password.sh, automaticamente te setea / crea usuario y contraseña:
+
+  ```bash
+  user: admin
+  password: admin
+  ```
