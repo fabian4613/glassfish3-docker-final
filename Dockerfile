@@ -31,6 +31,10 @@ RUN echo 'glassfish ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # Create the GlassFish directory and set permissions
 RUN mkdir -p $GLASSFISH_HOME && chown -R glassfish:root $GLASSFISH_HOME
 
+# Copy the startup script into the container
+COPY startup_script.sh /startup_script.sh
+RUN chmod +x /startup_script.sh
+
 # Change to the glassfish user
 USER glassfish
 
@@ -53,16 +57,12 @@ RUN echo "AS_JAVA=/usr/lib/jvm/java-8-openjdk-amd64" >> $GLASSFISH_HOME/glassfis
 RUN echo "jre-1.8=${jre-1.7}" >> $GLASSFISH_HOME/glassfish/config/asenv.conf
 
 # Ports being exposed
-EXPOSE 4848 8080 8181 22
+EXPOSE 4848 8080 22
 
 WORKDIR $GLASSFISH_HOME
 
 # Copia los archivos WAR locales al directorio autodeploy de GlassFish
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
-
-# Copy the startup script into the container
-COPY startup_script.sh /startup_script.sh
-RUN chmod +x /startup_script.sh
 
 # Start the GlassFish domain and OpenSSH
 CMD ["/bin/bash", "/startup_script.sh"]
