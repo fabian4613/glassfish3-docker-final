@@ -54,7 +54,7 @@ RUN echo "AS_JAVA=/usr/lib/jvm/java-8-openjdk-amd64" >> $GLASSFISH_HOME/glassfis
     echo "OTRA_VARIABLE=valor" >> $GLASSFISH_HOME/glassfish/config/asenv.conf
 
 # Agregar jre-1.8=${jre-1.7} a osgi.properties
-RUN echo "jre-1.8=${jre-1.7}" >> $GLASSFISH_HOME/glassfish/config/osgi.properties
+RUN echo 'jre-1.8=${jre-1.7}' >> $GLASSFISH_HOME/glassfish/config/osgi.properties
 
 # Ports being exposed
 EXPOSE 4848 8080 22
