@@ -61,7 +61,7 @@ COPY change_password.sh /change_password.sh
 RUN chmod +x /change_password.sh
 
 # Ports being exposed
-EXPOSE 4848 8080 22
+EXPOSE 4848 8080 8181 22
 
 WORKDIR $GLASSFISH_HOME
 
