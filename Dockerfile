@@ -9,9 +9,6 @@ ENV GLASSFISH_PKG=/tmp/glassfish-3.1.2.2.zip \
     GLASSFISH_HOME=/usr/local/glassfish3 \
     MD5=ae8e17e9dcc80117cb4b39284302763f \
     PATH=$PATH:/usr/local/glassfish3/bin
-    
-# SPEC para automatizar: change-admin-password
-RUN apt-get install -y expect
 
 # Update packages and install necessary dependencies
 RUN apt-get update && apt-get install -y wget unzip expect
@@ -41,10 +38,6 @@ RUN echo 'export GLASSFISH_PKG=/tmp/glassfish-3.1.2.2.zip' | tee -a /home/glassf
     echo 'export MD5=ae8e17e9dcc80117cb4b39284302763f' | tee -a /home/glassfish/.bashrc /root/.bashrc && \
     echo 'export PATH=$PATH:/usr/local/glassfish3/bin' | tee -a /home/glassfish/.bashrc /root/.bashrc
 
-# Copy the startup script into the container
-COPY startup_script.sh /startup_script.sh
-RUN chmod +x /startup_script.sh
-
 # Download and install GlassFish
 RUN wget -q -O $GLASSFISH_PKG $GLASSFISH_URL && \
     echo "$MD5 *$GLASSFISH_PKG" | md5sum -c - && \
@@ -63,6 +56,10 @@ RUN echo "AS_JAVA=/usr/lib/jvm/java-8-openjdk-amd64" >> $GLASSFISH_HOME/glassfis
 # Agregar jre-1.8=${jre-1.7} a osgi.properties
 RUN echo 'jre-1.8=${jre-1.7}' >> $GLASSFISH_HOME/glassfish/config/osgi.properties
 
+# Copy the change password script into the container
+COPY change_password.sh /change_password.sh
+RUN chmod +x /change_password.sh
+
 # Ports being exposed
 EXPOSE 4848 8080 22
 
@@ -70,6 +67,9 @@ WORKDIR $GLASSFISH_HOME
 
 # Copia los archivos WAR locales al directorio autodeploy de GlassFish
 COPY prueba2grupo1.war prueba2grupo2.war $GLASSFISH_HOME/glassfish/domains/domain1/autodeploy/
+
+# Ejecuta el script de cambio de contraseña
+RUN /change_password.sh
 
 # Mantener el contenedor activo con /bin/sh
 CMD service ssh start && /bin/bash
