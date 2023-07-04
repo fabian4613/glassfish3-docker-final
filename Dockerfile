@@ -31,8 +31,12 @@ RUN echo 'glassfish ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 # Create the GlassFish directory and set permissions
 RUN mkdir -p $GLASSFISH_HOME && chown -R glassfish:root $GLASSFISH_HOME
 
-# Modificar el perfil del usuario para incluir la variable PATH
-RUN echo 'export PATH=$PATH:/usr/local/glassfish3/bin' >> /home/glassfish/.bashrc
+# Modificar el perfil del usuario para incluir las variables de entorno
+RUN echo 'export GLASSFISH_PKG=/tmp/glassfish-3.1.2.2.zip' >> /home/glassfish/.bashrc && \
+    echo 'export GLASSFISH_URL=http://download.oracle.com/glassfish/3.1.2.2/release/glassfish-3.1.2.2.zip' >> /home/glassfish/.bashrc && \
+    echo 'export GLASSFISH_HOME=/usr/local/glassfish3' >> /home/glassfish/.bashrc && \
+    echo 'export MD5=ae8e17e9dcc80117cb4b39284302763f' >> /home/glassfish/.bashrc && \
+    echo 'export PATH=$PATH:/usr/local/glassfish3/bin' >> /home/glassfish/.bashrc
 
 # Copy the startup script into the container
 COPY startup_script.sh /startup_script.sh
